@@ -12,7 +12,7 @@ namespace DataManager
         public static void DataWriter(string[] DataTable, string FileName)
         {
 
-            System.IO.File.WriteAllLines("Data.csv", DataTable);
+            System.IO.File.WriteAllLines(FileName + ".csv", DataTable);
 
             //
             Console.WriteLine($"Data Write Complete to {AppDomain.CurrentDomain.BaseDirectory.ToString() + $"{FileName}.csv"}, Press any key to continue...");

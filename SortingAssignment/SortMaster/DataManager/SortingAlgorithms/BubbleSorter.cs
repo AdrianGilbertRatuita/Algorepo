@@ -17,21 +17,22 @@ namespace DataManager.SortingAlgorithms
             string[] SortedDatatable = DataTable;
             NewStopwatch.Start();
 
-            for (int i = 0; i < SortedDatatable.Length; i++)
+            for (int i = 0; i < DataTable.Length; i++)
             {
 
-                for (int j = 0; j < SortedDatatable.Length - 1; j++)
+                Console.WriteLine(i);
+                for (int j = 0; j < DataTable.Length - 1; j++)
                 {
 
-                    string DataItem1 = SortedDatatable[j].Split(',')[0];
-                    string DataItem2 = SortedDatatable[j + 1].Split(',')[0];
+                    string DataItem1 = DataTable[j].Split(',')[0];
+                    string DataItem2 = DataTable[j + 1].Split(',')[0];
 
                     if (int.Parse(DataItem1) > int.Parse(DataItem2))
                     {
 
-                        string Temp = SortedDatatable[j];
-                        SortedDatatable[j] = SortedDatatable[j + 1];
-                        SortedDatatable[j + 1] = Temp;
+                        string Temp = DataTable[j];
+                        DataTable[j] = DataTable[j + 1];
+                        DataTable[j + 1] = Temp;
 
                     }
 
@@ -52,21 +53,22 @@ namespace DataManager.SortingAlgorithms
             string[] SortedDatatable = DataTable;
             NewStopwatch.Start();
 
-            for (int i = 0; i < SortedDatatable.Length; i++)
+            for (int i = 0; i < DataTable.Length; i++)
             {
 
-                for (int j = 0; j < SortedDatatable.Length - 1; j++)
+                Console.WriteLine(i);
+                for (int j = 0; j < DataTable.Length - 1; j++)
                 {
 
-                    decimal DataItem1 = GUIDToDecimal.GetDecimalValue(SortedDatatable[j].Split(',')[1]);
-                    decimal DataItem2 = GUIDToDecimal.GetDecimalValue(SortedDatatable[j + 1].Split(',')[1]);
+                    decimal DataItem1 = GUIDToDecimal.GetDecimalValue(DataTable[j].Split(',')[1]);
+                    decimal DataItem2 = GUIDToDecimal.GetDecimalValue(DataTable[j + 1].Split(',')[1]);
 
                     if (DataItem1 > DataItem2)
                     {
 
-                        string Temp = SortedDatatable[j];
-                        SortedDatatable[j] = SortedDatatable[j + 1];
-                        SortedDatatable[j + 1] = Temp;
+                        string Temp = DataTable[j];
+                        DataTable[j] = DataTable[j + 1];
+                        DataTable[j + 1] = Temp;
 
                     }
 
@@ -87,21 +89,22 @@ namespace DataManager.SortingAlgorithms
             string[] SortedDatatable = DataTable;
             NewStopwatch.Start();
 
-            for (int i = 0; i < SortedDatatable.Length; i++)
+            for (int i = 0; i < DataTable.Length; i++)
             {
 
-                for (int j = 0; j < SortedDatatable.Length - 1; j++)
+                Console.WriteLine(i);
+                for (int j = 0; j < DataTable.Length - 1; j++)
                 {
 
-                    string DataItem1 = SortedDatatable[j].Split(',')[2];
-                    string DataItem2 = SortedDatatable[j + 1].Split(',')[2];
+                    string DataItem1 = DataTable[j].Split(',')[2];
+                    string DataItem2 = DataTable[j + 1].Split(',')[2];
 
                     if (double.Parse(DataItem1) > double.Parse(DataItem2))
                     {
 
-                        string Temp = SortedDatatable[j];
-                        SortedDatatable[j] = SortedDatatable[j + 1];
-                        SortedDatatable[j + 1] = Temp;
+                        string Temp = DataTable[j];
+                        DataTable[j] = DataTable[j + 1];
+                        DataTable[j + 1] = Temp;
 
                     }
 

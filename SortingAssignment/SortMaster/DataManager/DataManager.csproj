@@ -44,8 +44,10 @@
     <Compile Include="DataMaster.cs" />
     <Compile Include="SortingAlgorithms\BubbleSorter.cs" />
     <Compile Include="GUIDToDecimal.cs" />
+    <Compile Include="SortingAlgorithms\InsertSorter.cs" />
     <Compile Include="SortingAlgorithms\MergeSorter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortingAlgorithms\QuickSorter.cs" />
     <Compile Include="SortingAlgorithmType.cs" />
     <Compile Include="SortType.cs" />
   </ItemGroup>

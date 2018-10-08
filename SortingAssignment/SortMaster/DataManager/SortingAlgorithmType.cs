@@ -10,7 +10,9 @@ namespace DataManager
     {
 
         BUBBLESORT,
-        MERGESORT
+        MERGESORT,
+        INSERTIONSORT,
+        QUICKSORT
 
     }
 }

@@ -56,7 +56,7 @@ namespace DataManager.SortingAlgorithms
         }
 
         public static List<string> CheckThenSplit(List<string> DataList, SortType Sorting)
-        {       
+        {
 
             List<string> MergedList = new List<string>();
             List<string> ListReference = DataList;
@@ -70,6 +70,7 @@ namespace DataManager.SortingAlgorithms
                 while (ListReference.Count > 0)
                 {
 
+                    Console.WriteLine($"Splitting LEFT: {Left.Count}, RIGHT: {Right.Count}");
                     if (Left.Count < Count / 2)
                     {
 
@@ -92,7 +93,8 @@ namespace DataManager.SortingAlgorithms
                 if (Left.Count / 2 >= 1)
                 {
 
-                   Left = CheckThenSplit(Left, Sorting);
+                    Console.WriteLine("LeftRecursion Split");
+                    Left = CheckThenSplit(Left, Sorting);
 
                 }
 
@@ -100,10 +102,11 @@ namespace DataManager.SortingAlgorithms
                 if (Right.Count / 2 >= 1)
                 {
 
+                    Console.WriteLine("RightRecursion Split");
                     Right = CheckThenSplit(Right, Sorting);
 
                 }
-                
+
             }
 
             int FinalCount = Left.Count + Right.Count;
@@ -334,7 +337,7 @@ namespace DataManager.SortingAlgorithms
         public static void DisplayList<T>(List<T> DataList)
         {
 
-            foreach(T Item in DataList)
+            foreach (T Item in DataList)
             {
 
                 Console.WriteLine(Item);
