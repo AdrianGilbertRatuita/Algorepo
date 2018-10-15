@@ -54,8 +54,15 @@ namespace Tree
                 float TempDepth = 0;
                 TempDepth += Data[i].Count(character => character == '\t');
                 TempDepth += Data[i].Count(character => character == ' ') * 0.5f;
-                TempDepth += Data[i].Count(character => character == ' ') * 0.5f;
                 Depth.Add(TempDepth);
+
+            }
+
+            if (Depth[0] > 0)
+            {
+
+                Console.WriteLine("FILE IS NOT IN CORRECT FORMAT");
+                return null;
 
             }
 
