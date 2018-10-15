@@ -77,24 +77,28 @@ namespace Tree
             for (int i = 0; i < Nodes.Count; i++)
             {
 
+                // If Depth is 0 then add to root node
                 if (Nodes[i].Depth == 0)
                 {
 
                     Node.ChangeParentNode(Nodes[i], NewTree.RootNode);
 
                 }
+                // If Depth is the same as previous node, add to that node's parent
                 else if (Nodes[i].Depth == Nodes[i - 1].Depth)
                 {
 
                     Node.ChangeParentNode(Nodes[i], Nodes[i -1].ParentNode);
 
                 }
+                // If Node depth is greater than previous node, add as a child to the last
                 else if (Nodes[i].Depth > Nodes[i - 1].Depth)
                 {
 
                     Node.ChangeParentNode(Nodes[i], Nodes[i - 1]);
 
                 }
+                // if node depth is less than previous, loop through node list and determine close lowest
                 else if(Nodes[i].Depth < Nodes[i - 1].Depth)
                 {
 
