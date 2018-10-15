@@ -177,14 +177,23 @@ namespace Tree
 
         }
 
-        public static void GetParent(INode Node)
+        public static List<INode> GetParent(INode Node)
         {
 
-            Console.WriteLine(Node.Value);
+            List<INode> NodeOutput = new List<INode>();
+            GetParentRoot(Node, ref NodeOutput);
+            return NodeOutput;
+
+        }
+
+        public static void GetParentRoot(INode Node, ref List<INode> Nodes)
+        {
+
+            Nodes.Add(Node);
             if (Node.ParentNode != null)
             {
 
-                GetParent(Node.ParentNode);
+                GetParentRoot(Node.ParentNode, ref Nodes);
 
             }
 

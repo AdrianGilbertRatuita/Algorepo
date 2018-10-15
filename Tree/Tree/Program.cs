@@ -49,21 +49,42 @@ namespace Tree
                 for (int i = 0; i < FirstTree.Count; i++)
                 {
 
-                    TreeGraph.GetParent(FirstTree[i]);
+                    Console.WriteLine();
+                    List<INode> Stuff = TreeGraph.GetParent(FirstTree[i]);
+                    for (int j = Stuff.Count; j > 0; j--)
+                    {
+
+                        Console.WriteLine(Stuff[j - 1].Value);
+
+                    }
 
                 }
 
                 for (int i = 0; i < SecondTree.Count; i++)
                 {
 
-                    TreeGraph.GetParent(SecondTree[i]);
+                    Console.WriteLine();
+                    List<INode> Stuff = TreeGraph.GetParent(SecondTree[i]);
+                    for (int j = Stuff.Count; j > 0; j--)
+                    {
 
+                        Console.WriteLine(Stuff[j - 1].Value);
+
+                    }
+                
                 }
 
                 for (int i = 0; i < ThirdTree.Count; i++)
                 {
 
-                    TreeGraph.GetParent(ThirdTree[i]);
+                    Console.WriteLine();
+                    List<INode> Stuff = TreeGraph.GetParent(ThirdTree[i]);
+                    for (int j = Stuff.Count; j > 0; j--)
+                    {
+
+                        Console.WriteLine(Stuff[j - 1].Value);
+
+                    }
 
                 }
 
