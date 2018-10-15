@@ -8,12 +8,12 @@ namespace Tree
 {
     public class Node : INode
     {
-        public int Depth { get; set; }
+        public float Depth { get; set; }
         public string Value { get; set;}
         public INode ParentNode { get; set; }
         public List<INode> NodeChildren { get; private set; }
 
-        public Node(string _Value, int _Depth)
+        public Node(string _Value, float _Depth)
         {
 
             Depth = _Depth;

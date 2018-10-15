@@ -32,7 +32,7 @@ namespace Tree
 
         }
 
-        public static void WriteText(string Name, string[] Data)
+        public static void WriteOutlineFile(string Name, string[] Data)
         {
 
             System.IO.File.WriteAllLines(Name + ".txt", Data);
@@ -44,14 +44,18 @@ namespace Tree
 
             TreeGraph NewTree = new TreeGraph();
 
-            List<int> Depth = new List<int>();
+            List<float> Depth = new List<float>();
             List<INode> Nodes = new List<INode>();
 
             // Get each string depth
             for (int i = 0; i < Data.Length; i++)
             {
 
-                Depth.Add(Data[i].Count(character => character == '\t'));
+                float TempDepth = 0;
+                TempDepth += Data[i].Count(character => character == '\t');
+                TempDepth += Data[i].Count(character => character == ' ') * 0.5f;
+                TempDepth += Data[i].Count(character => character == ' ') * 0.5f;
+                Depth.Add(TempDepth);
 
             }
 
@@ -117,10 +121,12 @@ namespace Tree
         public static void DisplayNode(INode NodeToDisplay, ref List<string> Source)
         {
 
+
             if (NodeToDisplay.Value != "Root")
             {
 
                 Source.Add(NodeToDisplay.Value);
+                Console.WriteLine(NodeToDisplay.Value);
 
             }
             if (NodeToDisplay.NodeChildren.Count >= 0)
@@ -132,6 +138,53 @@ namespace Tree
                     DisplayNode(NodeToDisplay.NodeChildren[i], ref Source);
 
                 }
+
+            }
+
+        }
+
+        public static List<INode> GetNodes(string Value, TreeGraph Tree)
+        {
+
+            List<INode> ListOfNodes = new List<INode>();
+
+            CheckGetNode(Value, Tree.RootNode, ref ListOfNodes);
+
+            return ListOfNodes;
+
+        }
+
+        public static void CheckGetNode(string Value, INode Node, ref List<INode> Source)
+        {
+
+            if (Node.Value.Replace("\t", "") == Value)
+            {
+
+                Source.Add(Node);
+
+            }
+            if (Node.NodeChildren.Count >= 0)
+            {
+
+                for (int i = 0; i < Node.NodeChildren.Count; i++)
+                {
+
+                    CheckGetNode(Value, Node.NodeChildren[i], ref Source);
+
+                }
+
+            }
+
+        }
+
+        public static void GetParent(INode Node)
+        {
+
+            Console.WriteLine(Node.Value);
+            if (Node.ParentNode != null)
+            {
+
+                GetParent(Node.ParentNode);
 
             }
 

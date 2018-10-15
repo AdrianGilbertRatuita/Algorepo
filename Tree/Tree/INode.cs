@@ -9,7 +9,7 @@ namespace Tree
     public interface INode
     {
 
-        int Depth { get; }
+        float Depth { get; }
         string Value { get; }
         INode ParentNode { get; set; }
         List<INode> NodeChildren { get; }

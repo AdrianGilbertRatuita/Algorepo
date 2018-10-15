@@ -24,17 +24,57 @@ namespace Tree
             TreeGraph Tree2 = TreeGraph.CreateTree(Data2);
 
             TreeGraph.DisplayTree(Tree0, ref Output0);
+            Console.WriteLine("\n\n");
             TreeGraph.DisplayTree(Tree1, ref Output1);
+            Console.WriteLine("\n\n");
             TreeGraph.DisplayTree(Tree2, ref Output2);
+            Console.WriteLine("\n\n");
 
-            TreeGraph.WriteText("peopleTree", Output0.ToArray<string>());
-            TreeGraph.WriteText("placesTree", Output1.ToArray<string>());
-            TreeGraph.WriteText("unknownTree", Output2.ToArray<string>());
+            TreeGraph.WriteOutlineFile("peopleTree", Output0.ToArray<string>());
+            TreeGraph.WriteOutlineFile("placesTree", Output1.ToArray<string>());
+            TreeGraph.WriteOutlineFile("unknownTree", Output2.ToArray<string>());
+
+            string Enter = "";
+
+            while (Enter.ToUpper() != "END")
+            {
+
+                Console.WriteLine("Enter what to search, or End: ");
+                Enter = Console.ReadLine();
+
+                List<INode> FirstTree = TreeGraph.GetNodes(Enter, Tree0);
+                List<INode> SecondTree = TreeGraph.GetNodes(Enter, Tree1);
+                List<INode> ThirdTree = TreeGraph.GetNodes(Enter, Tree2);
+
+                for (int i = 0; i < FirstTree.Count; i++)
+                {
+
+                    TreeGraph.GetParent(FirstTree[i]);
+
+                }
+
+                for (int i = 0; i < SecondTree.Count; i++)
+                {
+
+                    TreeGraph.GetParent(SecondTree[i]);
+
+                }
+
+                for (int i = 0; i < ThirdTree.Count; i++)
+                {
+
+                    TreeGraph.GetParent(ThirdTree[i]);
+
+                }
+
+            }
 
             Console.ReadLine();
 
         }
 
     }
+
+
 
 }
