@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace TreeGraph
 {
-    public interface INode<T>
+    public interface INode
     {
 
         int Depth { get; }
         int Height { get; }
         string NodeName { get; }
-        T Nodevalue { get; }
+        string NodeValue { get; }
         string KeyIdentifier { get; }
-        INode<T> ParentNode { get; }
-        List<INode<T>> NodeChildren { get; }
-        void AddNodeChild(INode<T> NewNode);
-        void ChangeParentNode(INode<T> Parent);
-        void RemoveNodeChild(INode<T> RemoveNode);
+        INode ParentNode { get; }
+        List<INode> NodeChildren { get; }
+        void AddNodeChild(INode NewNode);
+        void ChangeParentNode(INode Parent);
+        void RemoveNodeChild(INode RemoveNode);
         void RemoveNodeChild(string Name);
-        void CalculateDepth();
-        void CalculateHeight();
+        List<INode> GetChildrenList();
 
     }
 }

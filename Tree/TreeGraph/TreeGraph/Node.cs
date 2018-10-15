@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TreeGraph
 {
-    public class Node<T> : INode
+    public class Node : INode
     {
 
         #region Properties
@@ -17,27 +17,30 @@ namespace TreeGraph
 
         public string NodeName { get; private set; }
 
-        public T NodeValue { get; set; }
+        public string NodeValue { get; set; }
 
         public string KeyIdentifier { get; private set; }
 
-        public INode<T> ParentNode { get; private set; }
+        public INode ParentNode { get; private set; }
 
-        public List<INode<T>> NodeChildren { get; private set; }
+        public List<INode> NodeChildren { get; private set; }
+
         //=======================================
         #endregion
 
         #region Constructors
         //=======================================
-        public Node(string Name, T Value) :this(Name, Value, "", null) { }
-        public Node(string Name, T Value, string Key) :this(Name, Value, Key, null) { }
-        public Node(string Name, T Value, string Key, INode<T> Parent)
+        public Node(string Value) : this("", Value, "", null) { }
+        public Node(string Name, string Value) :this(Name, Value, "", null) { }
+        public Node(string Name, string Value, string Key) :this(Name, Value, Key, null) { }
+        public Node(string Name, string Value, string Key, INode Parent)
         {
 
             NodeName = Name;
             NodeValue = Value;
             KeyIdentifier = Key;
             ParentNode = Parent;
+            NodeChildren = new List<INode>();
 
         }
         //=======================================
@@ -45,7 +48,7 @@ namespace TreeGraph
 
         #region Functions
         //=======================================
-        public void ChangeParentNode(INode<T> NewParent)
+        public void ChangeParentNode(INode NewParent)
         {
             
             if (ParentNode != null)
@@ -56,40 +59,9 @@ namespace TreeGraph
             }
             ParentNode = NewParent;
 
-            //
-            CalculateDepth();
-            CalculateHeight();
-
         }
 
-        public void CalculateDepth()
-        {
-
-            int Count = 0;
-            INode<T> Checker = ParentNode;
-            List<INode<T>> ParentNodeList = new List<INode<T>>();
-
-            while (Checker != null || Checker.NodeName == "Root")
-            {
-
-                Checker = Checker.ParentNode;
-                GetParentNode(Checker);
-                Count++;
-
-            }
-
-            Depth = Count;
-
-        }
-
-        public void CalculateHeight()
-        {
-
-            int Count = 0;  
-
-
-        }
-        public INode<T> GetParentNode(INode<T> Node)
+        public INode GetParentNode(INode Node)
         {
 
             return Node.ParentNode;
@@ -97,15 +69,21 @@ namespace TreeGraph
         }
 
 
-        public void AddNodeChild(INode<T> NewNode)
+        public void AddNodeChild(INode NewNode)
         {
 
-            NewNode.ChangeParentNode(NewNode);
+            NewNode.ChangeParentNode(this);
             NodeChildren.Add(NewNode);
             
         }
 
-        public void RemoveNodeChild(INode<T> RemoveNode)
+        public List<INode> GetChildrenList()
+        {
+
+            return NodeChildren;
+        }
+
+        public void RemoveNodeChild(INode RemoveNode)
         {
             
             if (NodeChildren.Contains(RemoveNode))
