@@ -62,7 +62,7 @@ namespace Tree
                 //Value = Value.Remove(0, ReturnCharacterFirstOccurence(Data[i]));
 
                 // Add Node
-                Nodes.Add(new Node(Value, TempDepth, Value + i));
+                Nodes.Add(new Node(Value, TempDepth, Value));
 
             }
 
