@@ -226,7 +226,7 @@ namespace Tree
                 Console.WriteLine("Tree Systems v2.1");
                 Console.WriteLine("============================================================");
                 Console.WriteLine(TreeNumber);
-                TreeGraph.DisplayTree(Tree);
+                TreeGraph.DisplayTree(Tree, ref Output);
                 Console.WriteLine("============================================================");
                 Console.WriteLine("\n\n");
                 Console.WriteLine("1) Add Node");
@@ -368,7 +368,10 @@ namespace Tree
 
                         }
 
+
+
                 }
+                Console.ReadLine();
 
             }
 

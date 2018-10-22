@@ -35,21 +35,6 @@ namespace Tree
 
         }
 
-        public static void ChangeParentNodeInitial(INode Child, INode NewParent)
-        {
-
-            if (Child.ParentNode != null)
-            {
-
-                Child.ParentNode.NodeChildren.Remove(Child);
-
-            }
-
-            Child.ParentNode = NewParent;
-            NewParent.NodeChildren.Add(Child);
-
-        }
-
         public static void ChangeParentNode(INode Child, INode NewParent)
         {
 
@@ -61,6 +46,8 @@ namespace Tree
             }
             Child.ParentNode = NewParent;
             NewParent.NodeChildren.Add(Child);
+
+
 
             UpdateChildrenDepth(Child, NewParent);
 
