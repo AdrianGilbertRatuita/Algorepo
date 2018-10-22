@@ -53,7 +53,7 @@ namespace Tree
                 TempDepth += Data[i].Count(character => character == '\t');
                 TempDepth += Data[i].Substring(0, ReturnCharacterFirstOccurence(Data[i])).Count(character => character == ' ') * 0.125f;
                 Depth.Add(TempDepth);
-
+           
                 // Create Temporary String
                 string Value = Data[i];
 
@@ -62,7 +62,7 @@ namespace Tree
                 //Value = Value.Remove(0, ReturnCharacterFirstOccurence(Data[i]));
 
                 // Add Node
-                Nodes.Add(new Node(Value, TempDepth, Value));
+                Nodes.Add(new Node(Value, TempDepth, Value + i));
 
             }
 
@@ -70,7 +70,6 @@ namespace Tree
             {
 
                 Console.WriteLine("FILE IS NOT IN CORRECT FORMAT");
-                return null;
 
             }
 
@@ -88,7 +87,7 @@ namespace Tree
                 else if (Nodes[i].Depth == Nodes[i - 1].Depth)
                 {
 
-                    Node.ChangeParentNode(Nodes[i], Nodes[i -1].ParentNode);
+                    Node.ChangeParentNode(Nodes[i], Nodes[i - 1].ParentNode);
 
                 }
                 // If Node depth is greater than previous node, add as a child to the last
@@ -98,19 +97,21 @@ namespace Tree
                     Node.ChangeParentNode(Nodes[i], Nodes[i - 1]);
 
                 }
-                // if node depth is less than previous, loop through node list and determine close lowest
+                // if node depth is less than previous, loop through node list starting from previous index and determine close lowest
                 else if(Nodes[i].Depth < Nodes[i - 1].Depth)
                 {
 
-                    for (int j = 0; j < Nodes.Count; j++)
+                    for (int j = i - 1; j != 0; j--)
                     {
 
                         if (Nodes[i].Depth == Nodes[j].Depth)
                         {
 
-                            Node.ChangeParentNode(Nodes[i], Nodes[i - 1].ParentNode);
+                            Node.ChangeParentNode(Nodes[i], Nodes[j].ParentNode);
                             break;
+
                         }
+
 
                     }
 

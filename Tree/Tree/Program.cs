@@ -14,14 +14,23 @@ namespace Tree
             string[] Data0 = TreeGraph.LoadText("people.txt");
             string[] Data1 = TreeGraph.LoadText("places.txt");
             string[] Data2 = TreeGraph.LoadText("unknownTaxonomy.txt");
+            string[] Data3 = TreeGraph.LoadText("names.tab");
+            string[] Data4 = TreeGraph.LoadText("names2.tab");
+            string[] Data5 = TreeGraph.LoadText("names3.tab");
 
             List<string> Output0 = new List<string>();
             List<string> Output1 = new List<string>();
             List<string> Output2 = new List<string>();
+            List<string> Output3 = new List<string>();
+            List<string> Output4 = new List<string>();
+            List<string> Output5 = new List<string>();
 
             TreeGraph Tree0 = TreeGraph.CreateTree(Data0);
             TreeGraph Tree1 = TreeGraph.CreateTree(Data1);
             TreeGraph Tree2 = TreeGraph.CreateTree(Data2);
+            TreeGraph Tree3 = TreeGraph.CreateTree(Data3);
+            TreeGraph Tree4 = TreeGraph.CreateTree(Data4);
+            TreeGraph Tree5 = TreeGraph.CreateTree(Data5);
 
             string Repeat = "";
 
@@ -34,6 +43,9 @@ namespace Tree
                 Console.WriteLine("1) Tree 1");
                 Console.WriteLine("2) Tree 2");
                 Console.WriteLine("3) Tree 3");
+                Console.WriteLine("4) Tree 4");
+                Console.WriteLine("5) Tree 5");
+                Console.WriteLine("6) Tree 6");
                 Console.WriteLine("Type \"END\" to go back to Exit");
 
                 //
@@ -62,6 +74,27 @@ namespace Tree
 
                             DisplayMenu(Tree2, "Tree 3");
                             break;
+                        }
+                    case "4":
+                        {
+
+                            DisplayMenu(Tree3, "Tree 4");
+                            break;
+
+                        }
+                    case "5":
+                        {
+
+                            DisplayMenu(Tree4, "Tree 5");
+                            break;
+
+                        }
+                    case "6":
+                        {
+
+                            DisplayMenu(Tree5, "Tree 6");
+                            break;
+
                         }
                     case "END":
                         {
@@ -193,7 +226,7 @@ namespace Tree
                 Console.WriteLine("Tree Systems v2.1");
                 Console.WriteLine("============================================================");
                 Console.WriteLine(TreeNumber);
-                TreeGraph.DisplayTree(Tree, ref Output);
+                TreeGraph.DisplayTree(Tree);
                 Console.WriteLine("============================================================");
                 Console.WriteLine("\n\n");
                 Console.WriteLine("1) Add Node");

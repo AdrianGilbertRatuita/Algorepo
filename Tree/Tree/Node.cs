@@ -35,6 +35,21 @@ namespace Tree
 
         }
 
+        public static void ChangeParentNodeInitial(INode Child, INode NewParent)
+        {
+
+            if (Child.ParentNode != null)
+            {
+
+                Child.NodeChildren.Remove(Child);
+
+            }
+
+            Child.ParentNode = NewParent;
+            NewParent.NodeChildren.Add(Child);
+
+        }
+
         public static void ChangeParentNode(INode Child, INode NewParent)
         {
 
@@ -55,7 +70,18 @@ namespace Tree
         {
 
             //
-            Child.Depth = Parent.Depth + 1;
+            if (Parent.Identifier != "Root" && Parent.Value != "Root")
+            {
+
+                Child.Depth = Parent.Depth + 1;
+
+            }
+            else
+            {
+
+                Child.Depth = 0;
+
+            }
 
             if(Child.NodeChildren.Count != 0)
             {
