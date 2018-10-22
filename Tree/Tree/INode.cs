@@ -11,6 +11,8 @@ namespace Tree
 
         float Depth { get; }
         string Value { get; }
+        string Identifier { get; }
+        bool IsReady { get; }
         INode ParentNode { get; set; }
         List<INode> NodeChildren { get; }
 

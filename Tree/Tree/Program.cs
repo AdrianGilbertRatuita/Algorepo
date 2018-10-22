@@ -40,53 +40,76 @@ namespace Tree
             {
 
                 Console.WriteLine("Enter what to search, or End: ");
-                Enter = Console.ReadLine();
+                string[] MultiEnter = Console.ReadLine().Split(',');
 
-                List<INode> FirstTree = TreeGraph.GetNodes(Enter, Tree0);
-                List<INode> SecondTree = TreeGraph.GetNodes(Enter, Tree1);
-                List<INode> ThirdTree = TreeGraph.GetNodes(Enter, Tree2);
+                INode FirstTree = TreeGraph.GetNode(MultiEnter[0], MultiEnter[1], Tree0);
+                INode SecondTree = TreeGraph.GetNode(MultiEnter[0], MultiEnter[1], Tree1);
+                INode ThirdTree = TreeGraph.GetNode(MultiEnter[0], MultiEnter[1], Tree2);
 
-                for (int i = 0; i < FirstTree.Count; i++)
+                if (FirstTree != null)
                 {
 
-                    Console.WriteLine();
-                    List<INode> Stuff = TreeGraph.GetParent(FirstTree[i]);
-                    for (int j = Stuff.Count; j > 0; j--)
-                    {
+                    Console.WriteLine(FirstTree.Value + "," + FirstTree.Identifier + ",First");
 
-                        Console.WriteLine(Stuff[j - 1].Value);
+                }
+                else if (SecondTree != null)
+                {
 
-                    }
+                    Console.WriteLine(SecondTree.Value + "," + SecondTree.Identifier + ",Second");
+
+                }
+                else if (ThirdTree != null)
+                {
+
+                    Console.WriteLine(ThirdTree.Value + "," + ThirdTree.Identifier + ",Third");
 
                 }
 
-                for (int i = 0; i < SecondTree.Count; i++)
-                {
+                //List<INode> FirstTree = TreeGraph.GetNodes(Enter, Tree0);
+                //List<INode> SecondTree = TreeGraph.GetNodes(Enter, Tree1);
+                //List<INode> ThirdTree = TreeGraph.GetNodes(Enter, Tree2);
 
-                    Console.WriteLine();
-                    List<INode> Stuff = TreeGraph.GetParent(SecondTree[i]);
-                    for (int j = Stuff.Count; j > 0; j--)
-                    {
+                //for (int i = 0; i < FirstTree.Count; i++)
+                //{
 
-                        Console.WriteLine(Stuff[j - 1].Value);
+                //    Console.WriteLine();
+                //    List<INode> Stuff = TreeGraph.GetParent(FirstTree[i]);
+                //    for (int j = Stuff.Count; j > 0; j--)
+                //    {
 
-                    }
-                
-                }
+                //        Console.WriteLine(Stuff[j - 1].Value);
 
-                for (int i = 0; i < ThirdTree.Count; i++)
-                {
+                //    }
 
-                    Console.WriteLine();
-                    List<INode> Stuff = TreeGraph.GetParent(ThirdTree[i]);
-                    for (int j = Stuff.Count; j > 0; j--)
-                    {
+                //}
 
-                        Console.WriteLine(Stuff[j - 1].Value);
+                //for (int i = 0; i < SecondTree.Count; i++)
+                //{
 
-                    }
+                //    Console.WriteLine();
+                //    List<INode> Stuff = TreeGraph.GetParent(SecondTree[i]);
+                //    for (int j = Stuff.Count; j > 0; j--)
+                //    {
 
-                }
+                //        Console.WriteLine(Stuff[j - 1].Value);
+
+                //    }
+
+                //}
+
+                //for (int i = 0; i < ThirdTree.Count; i++)
+                //{
+
+                //    Console.WriteLine();
+                //    List<INode> Stuff = TreeGraph.GetParent(ThirdTree[i]);
+                //    for (int j = Stuff.Count; j > 0; j--)
+                //    {
+
+                //        Console.WriteLine(Stuff[j - 1].Value);
+
+                //    }
+
+                //}
 
             }
 
