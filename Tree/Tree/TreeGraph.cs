@@ -9,14 +9,14 @@ namespace Tree
     public class TreeGraph
     {
 
-        private INode RootNode;
+        public INode RootNode { get; private set; }
         public bool IsReady { get; private set; }
 
         // Constructor
         public TreeGraph()
         {
 
-            RootNode = new Node("Root", 0, "ROOT");
+            RootNode = new Node("Root", 0, "Root");
 
         }
 
@@ -58,6 +58,7 @@ namespace Tree
                 string Value = Data[i];
 
                 Value = Value.Replace("\t", "");
+                
                 //Value = Value.Remove(0, ReturnCharacterFirstOccurence(Data[i]));
 
                 // Add Node
@@ -121,6 +122,13 @@ namespace Tree
 
         }
 
+        public static void DisplayTree(TreeGraph TreeToDisplay)
+        {
+
+            DisplayNode(TreeToDisplay.RootNode);
+
+        }
+
         // Display the whole tree
         public static void DisplayTree(TreeGraph TreeToDisplay, ref List<string> Output)
         {
@@ -132,7 +140,13 @@ namespace Tree
         public static void AddNode(INode NewNode, string Identifier, string Value, TreeGraph Tree)
         {
 
-            if (NewNode.IsReady && !IdentifierCheck(NewNode.Identifier, Tree.RootNode))
+            if (Value == "Root" && Identifier == "ROOT")
+            {
+
+                Node.ChangeParentNode(NewNode, Tree.RootNode);
+
+            }
+            else if (NewNode.IsReady && !IdentifierCheck(NewNode.Identifier, Tree.RootNode))
             {
 
                 Node.ChangeParentNode(NewNode, GetNode(Identifier, Value, Tree));
@@ -144,7 +158,13 @@ namespace Tree
         public static void AddNode(INode NewNode, INode NodeToAddTo, TreeGraph Tree)
         {
 
-            if (NewNode.IsReady && !IdentifierCheck(NewNode.Identifier, Tree.RootNode))
+            if (NodeToAddTo.Value == "Root" && NodeToAddTo.Identifier == "ROOT")
+            {
+
+                Node.ChangeParentNode(NewNode, Tree.RootNode);
+
+            }
+            else if (NewNode.IsReady && !IdentifierCheck(NewNode.Identifier, Tree.RootNode))
             {
 
                 Node.ChangeParentNode(NewNode, NodeToAddTo);
@@ -162,6 +182,13 @@ namespace Tree
                 NodeToRemove.ParentNode.NodeChildren.Remove(NodeToRemove);        
 
             }
+
+        }
+
+        public static void RemoveNode(string Identifer, string Value, TreeGraph Tree)
+        {
+
+            RemoveNode(TreeGraph.GetNode(Identifer, Value, Tree), Tree);
 
         }
 
@@ -275,9 +302,10 @@ namespace Tree
         }
 
         // Recursively check if identifier has been taken
-        private static bool IdentifierCheck(string Identifer, INode Node)
+        public static bool IdentifierCheck(string Identifer, INode Node)
         {
 
+            bool Checker = false;
             if (Node.Identifier == Identifer)
             {
 
@@ -290,13 +318,18 @@ namespace Tree
                 for (int i = 0; i < Node.NodeChildren.Count; i++)
                 {
 
-                    return IdentifierCheck(Identifer, Node.NodeChildren[i]);
-                    
+                    if (IdentifierCheck(Identifer, Node.NodeChildren[i]))
+                    {
+
+                        return true;
+
+                    }
+
                 }
                 
             }
 
-            return false;
+            return Checker;
 
         }
 
@@ -307,8 +340,8 @@ namespace Tree
             if (NodeToDisplay.Value != "Root")
             {
 
-                Source.Add(NodeToDisplay.Value);
-                Console.WriteLine(ReturnStringDepth(NodeToDisplay.Depth) + NodeToDisplay.Value);
+                Source.Add(NodeToDisplay.Identifier + "," + NodeToDisplay.Value);
+                Console.WriteLine(ReturnStringDepth(NodeToDisplay.Depth) + "ID:" + NodeToDisplay.Identifier + "," + NodeToDisplay.Value);
 
             }
             if (NodeToDisplay.NodeChildren.Count != 0)
@@ -318,6 +351,30 @@ namespace Tree
                 {
 
                     DisplayNode(NodeToDisplay.NodeChildren[i], ref Source);
+
+                }
+
+            }
+
+        }
+
+        // Recursively display all nodes in a tree, no output strings
+        private static void DisplayNode(INode NodeToDisplay)
+        {
+
+            if (NodeToDisplay.Value != "Root")
+            {
+
+                Console.WriteLine(ReturnStringDepth(NodeToDisplay.Depth) + "ID:" + NodeToDisplay.Identifier + "," + NodeToDisplay.Value);
+
+            }
+            if (NodeToDisplay.NodeChildren.Count != 0)
+            {
+
+                for (int i = 0; i < NodeToDisplay.NodeChildren.Count; i++)
+                {
+
+                    DisplayNode(NodeToDisplay.NodeChildren[i]);
 
                 }
 

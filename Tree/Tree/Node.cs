@@ -12,7 +12,7 @@ namespace Tree
         public float Depth { get; set; }
         public string Value { get; set;}
         public string Identifier { get; private set; }
-        public bool IsReady { get { return ReadyCheck(Value); } private set { IsReady = value; } }
+        public bool IsReady { get { return ReadyCheck(Value); } set { IsReady = value; } }
         public INode ParentNode { get; set; }
         public List<INode> NodeChildren { get; private set; }
 
@@ -46,6 +46,28 @@ namespace Tree
             }
             Child.ParentNode = NewParent;
             NewParent.NodeChildren.Add(Child);
+
+            UpdateChildrenDepth(Child, NewParent);
+
+        }
+
+        private static void UpdateChildrenDepth(INode Child, INode Parent)
+        {
+
+            //
+            Child.Depth = Parent.Depth + 1;
+
+            if(Child.NodeChildren.Count != 0)
+            {
+
+                for (int i = 0; i < Child.NodeChildren.Count; i++)
+                {
+
+                    UpdateChildrenDepth(Child.NodeChildren[i], Child);
+
+                }
+
+            }
 
         }
 
