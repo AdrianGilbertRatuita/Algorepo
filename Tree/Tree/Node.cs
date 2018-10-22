@@ -41,7 +41,7 @@ namespace Tree
             if (Child.ParentNode != null)
             {
 
-                Child.NodeChildren.Remove(Child);
+                Child.ParentNode.NodeChildren.Remove(Child);
 
             }
 
@@ -56,7 +56,7 @@ namespace Tree
             if (Child.ParentNode != null)
             {
 
-                Child.NodeChildren.Remove(Child);
+                Child.ParentNode.NodeChildren.Remove(Child);
 
             }
             Child.ParentNode = NewParent;
